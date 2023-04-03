@@ -13,8 +13,16 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('sales-team')
 
-meetings = SHEET.worksheet('meetings')
+def get_user_name():
+    """
+    Get the user name.
+    """
+    print("Please enter your name.")
+    print("Your name should be one of the following.")
+    print("Tommy, Jennie, Sara, Michael, Fred, Louise\n")
 
-data = meetings.get_all_values()
+    data_str = input("Enter your name here: ")
+    print(f"Your name is {data_str}")
 
-print(data)
+
+get_user_name()
