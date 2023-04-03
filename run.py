@@ -19,6 +19,7 @@ def get_user_name():
     Check that the users name is one of the following in the list.
     if not print an error.
     """
+
     expected_names = ['Tommy', 'Jennie', 'Sara', 'Michael', 'Fred', 'Louise']
     print("Please enter your name.")
     print(f"Your name should be one of the following: {', '.join(expected_names)}\n")
@@ -33,3 +34,11 @@ def get_user_name():
 
 
 get_user_name()
+
+
+def get_num_meetings():
+
+    num_meetings = int(input("Enter the number of meeting you´re going to have today: "))
+    print(f"You have {num_meetings} meetings today")
+
+get_num_meetings()
