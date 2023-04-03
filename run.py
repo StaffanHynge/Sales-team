@@ -16,13 +16,20 @@ SHEET = GSPREAD_CLIENT.open('sales-team')
 def get_user_name():
     """
     Get the user name.
+    Check that the users name is one of the following in the list.
+    if not print an error.
     """
+    expected_names = ['Tommy', 'Jennie', 'Sara', 'Michael', 'Fred', 'Louise']
     print("Please enter your name.")
-    print("Your name should be one of the following.")
-    print("Tommy, Jennie, Sara, Michael, Fred, Louise\n")
+    print(f"Your name should be one of the following: {', '.join(expected_names)}\n")
 
     data_str = input("Enter your name here: ")
     print(f"Your name is {data_str}")
+
+    if data_str in expected_names:
+        print("Welcome!")
+    else:
+        print("Access Denied.")
 
 
 get_user_name()
