@@ -34,7 +34,7 @@ def get_user_name():
         else:
             print(f"Access Denied. Your name should be one of the following: {', '.join(expected_names)}\n")
 
-data_str = get_user_name()
+get_user_name()
 
 def get_num_sales():
     """
@@ -43,7 +43,7 @@ def get_num_sales():
     If it´s not a number, it displays an error and asks again
     """
     while True:
-        num_str= (input("Enter the number of sales you´re going to have today: "))
+        num_str= (input("Enter the number of meetings you´re going to have today: "))
         if num_str.isdigit():
             num = int(num_str)
             return num
@@ -55,51 +55,4 @@ if num:
     print(f"You have {num} sales today.")
 else:
     print("Invalid input. Try again")
-
-    # Är något på spåren här
-
-def update_sales_worksheet(data_str, num):
-    """
-    Update sales worksheet, add new row with the list data provided
-    """
-
-    sales_worksheet = SHEET.worksheet('sales')
-    row = [data_str, num]
-    sales_worksheet.append_row(row)
-
-update_sales_worksheet(data_str, num)
-
-def update_salary_worksheet(num):
-    """
-    Update Salary worksheet, add new row with the list data provided
-    """
-
-    # Multiply num by 10
-    if num > 20:
-        num *= 20
-        print("Great work")
-    elif num >= 10:
-        num *= 15
-        print("Good work, You reached over our daily goal of 10 sales per day")
-    else:
-        num *= 10
-        print("You suck")
-
-    salary_worksheet = SHEET.worksheet('salary')
-    salary_worksheet.append_row([num])
-    print(f"You earned {num} euros today.")
-
-update_salary_worksheet(num)
-
-def update_products_worksheet(num):
-    """
-    Update Products worksheet, add new row with the list data provided
-    """
-    # 100 - num
-    num -= 100
-
-    products_worksheet = SHEET.worksheet('products')
-    products_worksheet.append_row([num])
-    print(f"We have {num} products left in the store.")
-
-update_products_worksheet(num)
+   
