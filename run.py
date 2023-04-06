@@ -56,7 +56,6 @@ if num:
 else:
     print("Invalid input. Try again")
 
-    # Är något på spåren här
 
 def update_sales_worksheet(data_str, num):
     """
@@ -77,18 +76,18 @@ def update_salary_worksheet(num):
     # Multiply num 
     if num <= 10:
         num *= 10
-        print("You sold up to 10 units. Your earning is multiplied by 10.")
+        print("You get 10 euros for your first 10 units sold.")
     elif num <= 20:
         num_10 = 10 * 10
         num_11_20 = (num - 10) * 15
         num = num_10 + num_11_20
-        print("You sold up to 20 units. Your earnings for first 10 units is multiplied by 10, and for the next 10 units it is multiplied by 15.")
+        print("You get 10 euros for your first 10 units and 15 euros for your second 10 units sold.")
     else:
         num_10 = 10 * 10
         num_11_20 = 10 * 15
         num_inf = (num - 20) * 20
         num = num_10 + num_11_20 + num_inf
-        print("You sold more than 20 units. Your earnings for first 10 units is multiplied by 10, for the next 10 units it is multiplied by 15, and for all units greater than 20 it is multiplied by 20.")
+        print("You get 10 euros for your first 10 units,15 euros for your second 10 units sold and 20 euros for unit number 21 and so on.")
 
     salary_worksheet = SHEET.worksheet('salary')
     salary_worksheet.append_row([num])
@@ -101,10 +100,15 @@ def update_products_worksheet(num):
     Update Products worksheet, add new row with the list data provided
     """
     # 100 - num
-    num = abs(100 - num)
+     # num = abs(10 - num)
 
-    products_worksheet = SHEET.worksheet('products')
-    products_worksheet.append_row([num])
-    print(f"We have {num} products left in the store.")
+    remaining = 10 - num
+    if num >= 10:
+        print("Great work! You've reached your sales goal of 10 units sold per day.")
+    else:
+        print(f"You need to sell {remaining} more products to reach your goal.")
+
+    products_worksheet = SHEET.worksheet('goal')
+    products_worksheet.append_row([remaining])
 
 update_products_worksheet(num)
