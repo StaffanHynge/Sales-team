@@ -13,7 +13,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('sales-team')
 
 
-expected_names = ['Tommy', 'Jennie', 'Sara', 'Michael', 'Fred', 'Louise']
+expected_names = ['Tommy', 'Jennie', 'Sara', 'Michael', 'Fred']
 
 def get_user_name():
     """
