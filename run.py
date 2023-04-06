@@ -25,7 +25,7 @@ def get_user_name():
     print(f"Your name should be one of the following: {', '.join(expected_names)}\n")
     while True:
 
-        data_str = input("Enter your name here: ")
+        data_str = input("Enter your name here:\n ")
         print(f"Your name is {data_str}")
 
         if data_str in expected_names:
@@ -43,7 +43,7 @@ def get_num_sales():
     If it´s not a number, it displays an error and asks again
     """
     while True:
-        num_str= (input("Enter the number of sales you´re going to have today: "))
+        num_str= (input("Enter the number of sales you´re going to have today:\n "))
         if num_str.isdigit():
             num = int(num_str)
             return num
