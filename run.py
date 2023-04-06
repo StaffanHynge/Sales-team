@@ -15,6 +15,7 @@ SHEET = GSPREAD_CLIENT.open('sales-team')
 
 expected_names = ['Tommy', 'Jennie', 'Sara', 'Michael', 'Fred']
 
+
 def get_user_name():
     """
     Get the user name.
@@ -22,7 +23,7 @@ def get_user_name():
     if not print an error and the function loops.
     """
     print("Please enter your name.")
-    print(f"Your name should be one of the following: {', '.join(expected_names)}\n")
+    print(f"Your name should be one of: {', '.join(expected_names)}\n")
     while True:
 
         data_str = input("Enter your name here:\n ")
@@ -32,9 +33,11 @@ def get_user_name():
             print("Welcome!")
             return data_str
         else:
-            print(f"Access Denied. Your name should be one of the following: {', '.join(expected_names)}\n")
+            print(f"Access Denied. Choose from: {', '.join(expected_names)}\n")
+
 
 data_str = get_user_name()
+
 
 def get_num_sales():
     """
@@ -43,12 +46,13 @@ def get_num_sales():
     If it´s not a number, it displays an error and asks again
     """
     while True:
-        num_str= (input("Enter the number of sales you´re going to have today:\n "))
+        num_str = (input("Enter the number of sales you´ve had today:\n "))
         if num_str.isdigit():
             num = int(num_str)
             return num
         else:
             print("Invalid input. Please enter a single number.\n")
+
 
 num = get_num_sales()
 if num:
@@ -66,14 +70,15 @@ def update_sales_worksheet(data_str, num):
     row = [data_str, num]
     sales_worksheet.append_row(row)
 
+
 update_sales_worksheet(data_str, num)
+
 
 def update_salary_worksheet(num):
     """
     Update Salary worksheet, add new row with the list data provided
     """
 
-    # Multiply num 
     if num <= 10:
         num *= 10
         print("You get 10 euros for your first 10 units sold.")
@@ -81,34 +86,35 @@ def update_salary_worksheet(num):
         num_10 = 10 * 10
         num_11_20 = (num - 10) * 15
         num = num_10 + num_11_20
-        print("You get 10 euros for your first 10 units and 15 euros for your second 10 units sold.")
+        print("You get 15 euros for your second 10 units sold.")
     else:
         num_10 = 10 * 10
         num_11_20 = 10 * 15
         num_inf = (num - 20) * 20
         num = num_10 + num_11_20 + num_inf
-        print("You get 10 euros for your first 10 units,15 euros for your second 10 units sold and 20 euros for unit number 21 and so on.")
+        print("You get 20 euros for unit number 21 and so on.")
 
     salary_worksheet = SHEET.worksheet('salary')
     salary_worksheet.append_row([num])
     print(f"You earned {num} euros today.")
 
+
 update_salary_worksheet(num)
+
 
 def update_products_worksheet(num):
     """
     Update Products worksheet, add new row with the list data provided
     """
-    # 100 - num
-     # num = abs(10 - num)
 
     remaining = 10 - num
     if num >= 10:
-        print("Great work! You've reached your sales goal of 10 units sold per day.")
+        print("Great work! You've reached your sales goal of 10 units sold.")
     else:
-        print(f"You need to sell {remaining} more products to reach your goal.")
+        print(f"You need to sell {remaining} more units to reach your goal.")
 
     products_worksheet = SHEET.worksheet('goal')
     products_worksheet.append_row([remaining])
+
 
 update_products_worksheet(num)
