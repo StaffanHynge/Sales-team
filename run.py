@@ -13,7 +13,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('sales-team')
 
 
-expected_names = ['Tommy', 'Jennie', 'Sara', 'Michael', 'Fred']
+expected_names = ['TOMMY', 'JENNIE', 'SARA', 'MICHAEL', 'FRED']
 
 
 def get_user_name():
@@ -26,7 +26,7 @@ def get_user_name():
     print(f"Your name should be one of: {', '.join(expected_names)}\n")
     while True:
 
-        data_str = input("Enter your name here:\n ")
+        data_str = input("Enter your name here:\n ").upper()
         print(f"Your name is {data_str}")
 
         if data_str in expected_names:
@@ -112,6 +112,8 @@ def update_products_worksheet(num):
         print("Great work! You've reached your sales goal of 10 units sold.")
     else:
         print(f"You need to sell {remaining} more units to reach your goal.")
+
+    print("Thank you. Have a nice day")
 
     products_worksheet = SHEET.worksheet('goal')
     products_worksheet.append_row([remaining])
