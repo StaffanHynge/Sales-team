@@ -57,8 +57,6 @@ def get_num_sales():
 num = get_num_sales()
 if num:
     print(f"You have {num} sales today.")
-else:
-    print("Invalid input. Try again")
 
 
 def update_sales_worksheet(data_str, num):
