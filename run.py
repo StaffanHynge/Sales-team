@@ -74,16 +74,21 @@ def update_salary_worksheet(num):
     Update Salary worksheet, add new row with the list data provided
     """
 
-    # Multiply num by 10
-    if num > 20:
-        num *= 20
-        print("Great work")
-    elif num >= 10:
-        num *= 15
-        print("Good work, You reached over our daily goal of 10 sales per day")
-    else:
+    # Multiply num 
+    if num <= 10:
         num *= 10
-        print("You suck")
+        print("You sold up to 10 units. Your earning is multiplied by 10.")
+    elif num <= 20:
+        num_10 = 10 * 10
+        num_11_20 = (num - 10) * 15
+        num = num_10 + num_11_20
+        print("You sold up to 20 units. Your earnings for first 10 units is multiplied by 10, and for the next 10 units it is multiplied by 15.")
+    else:
+        num_10 = 10 * 10
+        num_11_20 = 10 * 15
+        num_inf = (num - 20) * 20
+        num = num_10 + num_11_20 + num_inf
+        print("You sold more than 20 units. Your earnings for first 10 units is multiplied by 10, for the next 10 units it is multiplied by 15, and for all units greater than 20 it is multiplied by 20.")
 
     salary_worksheet = SHEET.worksheet('salary')
     salary_worksheet.append_row([num])
@@ -96,7 +101,7 @@ def update_products_worksheet(num):
     Update Products worksheet, add new row with the list data provided
     """
     # 100 - num
-    num -= 100
+    num = abs(100 - num)
 
     products_worksheet = SHEET.worksheet('products')
     products_worksheet.append_row([num])
